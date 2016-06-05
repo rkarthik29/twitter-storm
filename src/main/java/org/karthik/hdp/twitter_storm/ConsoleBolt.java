@@ -1,5 +1,7 @@
 package org.karthik.hdp.twitter_storm;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -38,6 +40,7 @@ public class ConsoleBolt implements IBasicBolt{
 		// TODO Auto-generated method stub
 		declarer.declareStream("AFC", new Fields("timestamp", "stats"));
 		declarer.declareStream("NFC", new Fields("timestamp", "stats"));
+		declarer.declareStream("tweets",new Fields("createdat","tweet","sentiment","team"));
 		
 	}
 
@@ -105,6 +108,8 @@ public class ConsoleBolt implements IBasicBolt{
 				collector.emit(nfc,new Values(agg.getPrev_key(),nfcStats.toString()));
 				collector.emit(afc,new Values(agg.getPrev_key(),afcStats.toString()));
 			}
+			DateFormat df = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+			collector.emit("tweets",new Values(status.getCreatedAt(),status.getText(),"positive",team));
 		}
 	}
 

@@ -4,7 +4,7 @@
   <groupId>org.karthik.hdp</groupId>
   <artifactId>twitter-storm</artifactId>
   <name>twitter-storm</name>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.1-SNAPSHOT</version>
   <url>http://maven.apache.org</url>
   <build>
     <plugins>
